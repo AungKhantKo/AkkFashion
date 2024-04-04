@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Item;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $items = Item::all();
+        // dd($items);
+        return view('frontend.index', compact('items'));
     }
 
     public function show($id)
     {
         // echo $id;
-        return view('frontend.shop_item');
+        $item = Item::find($id);
+        // dd($item);
+        return view('frontend.shop_item', compact('item'));
     }
 }
