@@ -19,6 +19,6 @@ class Item extends Model
         'image',
         'inStock',
         'discount',
-        'categoty_id'
+        'category_id'
     ];
 }
