@@ -7,16 +7,17 @@
             </div>
 
         <div class="container-md">
-            <form action="" class="border">
+            <form action="{{route('backend.payments.store')}}" method="POST" enctype="multipart/form-data" class="border">
+                {{csrf_field()}}
                 <div class="row py-2">
                     <div class="offset-lg-1 col-lg-10">
                         <div class="mb-3 mt-3">
-                            <label for="exampleFormControlInput1" class="form-label fw-bold">Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="">
                         </div>
                         <div class="mb-3">
-                            <label for="formFile" class="form-label fw-bold">Image</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <label for="image" class="form-label fw-bold">Image</label>
+                            <input class="form-control" type="file" name="image" id="image">
                         </div>
                         <div class="mb-3">
                             <div class="d-grid gap-2">

@@ -32,7 +32,19 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $categories= Category::create($request->all()); 
+        // dd($request);
+
+        // file upload
+        $imgFileName = time().'.'.$request->image->extension();
+        // dd($imgFileName);
+        $upload = $request->image->move(public_path('images/'), $imgFileName);
+        if($upload){
+            $categories->image = "/images/".$imgFileName;
+        }
+        $categories->save();
+        return redirect()->route('backend.categories.index');
     }
 
     /**
@@ -67,3 +79,4 @@ class CategoryController extends Controller
         //
     }
 }
+

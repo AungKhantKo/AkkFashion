@@ -7,35 +7,36 @@
             </div>
 
         <div class="container-md">
-            <form action="" class="border">
+            <form action="{{route('backend.users.store')}}" method="POST" class="border">
+                {{csrf_field()}}
                 <div class="row py-2">
                     <div class="offset-lg-1 col-lg-10">
                         <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label fw-bold">Name</label>
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <label for="name" class="form-label fw-bold">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" placeholder="">
                         </div>
                         <div class="mb-3">
-                            <label for="formFile" class="form-label fw-bold">Email</label>
-                            <input class="form-control" type="email" id="formFile" placeholder="example@gmail.com">
+                            <label for="email" class="form-label fw-bold">Email</label>
+                            <input class="form-control" type="email" name="email" id="email" placeholder="example@gmail.com">
                         </div>
                         <div class="mb-3 ">
-                            <label for="exampleFormControlInput1" class="form-label fw-bold">Phone</label>
-                            <input type="Phone" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <label for="phone" class="form-label fw-bold">Phone</label>
+                            <input type="Phone" class="form-control" name="phone" id="phone" placeholder="">
                         </div>
                         <div class="mb-3 ">
-                            <label for="exampleFormControlInput1" class="form-label fw-bold">Address</label>
-                            <textarea class="form-control" placeholder="" id="floatingTextarea"></textarea>
+                            <label for="address" class="form-label fw-bold">Address</label>
+                            <textarea class="form-control" placeholder="" name="address" id="address"></textarea>
                         </div>
                         <div class="mb-3 ">
-                            <label for="exampleFormControlInput1" class="form-label fw-bold">Password</label>
-                            <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="">
+                            <label for="password" class="form-label fw-bold">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="">
                         </div>
                         <div class="mb-3 ">
-                            <label for="exampleFormControlInput1" class="form-label fw-bold">Role</label>
-                            <select class="form-select" aria-label="Default select example">
-                                <option selected>Open this select menu</option>
-                                <option value="1">Yes</option>
-                                <option value="2">No</option>                                
+                            <label for="role" class="form-label fw-bold">Role</label>
+                            <select class="form-select" name="role" aria-label="Default select example">
+                                <option selected>Admin</option>
+                                <option value="Seller">Seller</option>
+                                <option value="User">User</option>                                
                             </select>
                         </div>                     
                         <div class="mb-3">

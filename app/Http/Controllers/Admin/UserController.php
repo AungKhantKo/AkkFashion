@@ -31,7 +31,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $users = User::create($request->all());
+        $users->save();
+        return redirect()->route('backend.users.index');
+
     }
 
     /**

@@ -32,7 +32,16 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payments = Payment::create($request->all());
+
+        // file upload
+        $fileName= time().'.'.$request->image->extension();
+        $upload = $request->image->move(public_path('images/'), $fileName);
+        if($upload){
+            $payments->image = "/images/".$fileName;
+        }
+        $payments->save();
+        return redirect()->route('backend.payments.index');
     }
 
     /**

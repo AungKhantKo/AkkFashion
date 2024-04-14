@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Item;
+use App\Models\Category;
 
 class ItemController extends Controller
 {
@@ -23,7 +24,9 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('admin.items.create');
+        $categories = Category::all();
+        
+        return view('admin.items.create',compact('categories'));
     }
 
     /**
@@ -31,7 +34,20 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+        $items= Item::create($request->all());
+
+        // file upload
+        $fileName = time().'.'.$request->image->extension();
+
+        $upload = $request->image->move(public_path('images/'), $fileName);
+        if($upload) {
+            $items->image = "/images/".$fileName;
+        }
+
+        $items->save();
+
+        return redirect()->route('backend.items.index');
     }
 
     /**
@@ -66,3 +82,4 @@ class ItemController extends Controller
         //
     }
 }
+
