@@ -77,7 +77,10 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // echo $id;
+        $category = Category::find($id);
+        $category->delete();
+        return redirect()->route('backend.categories.index');
     }
 }
 

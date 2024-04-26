@@ -74,6 +74,9 @@ class PaymentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // echo $id;
+        $payment = Payment::find($id);
+        $payment->delete();
+        return redirect()->route('backend.payments.index');
     }
 }
