@@ -14,7 +14,7 @@
                 DataTable Example
             </div>
             <div class="card-body">
-                <table id="datatablesSimple">
+                <table id="" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>CodeNo</th>
@@ -35,7 +35,7 @@
                             <th>Action</th>
                         </tr>    
                     </tfoot>
-                    <tbody>
+                    <tbody id="item_tbody">
                         @foreach($items as $item)
                         <tr>
                             <td>{{$item->codeNo}}</td>
@@ -43,7 +43,10 @@
                             <td>{{$item->price}} MMK</td>
                             <td>{{$item->discount}} MMK</td>
                             <td>{{$item->inStock}}</td>
-                            <td>Action</td>
+                            <td>
+                                <a href="{{route('backend.items.edit',$item->id)}}" class="btn btn-sm btn-warning">Edit</a>
+                                <button class="btn btn-sm btn-danger delete" data-id="{{$item->id}}" type="button">Delete</button>
+                            </td>
                         </tr>  
                         @endforeach  
                     </body>
@@ -51,5 +54,41 @@
             </div>
         </div>
     </div>
+
+     <!-- delete Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header bg-danger text-light">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure to delete?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                        <form action="" method="POST" id="deleteForm">
+                            {{csrf_field()}}
+                            {{method_field('delete')}}
+                        <button type="submit" class="btn btn-danger">Yes</button>
+                        </form>
+                    </div>
+                    </div>
+                </div>
+    </div>
 @endsection
-         
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#item_tbody').on('click','.delete',function(){
+                let id = $(this).data('id');
+                console.log(id);
+                $('#deleteForm').prop('action','items/'+id);
+                $('#deleteModal').modal('show');
+            })
+        })
+    </script>
+@endsection
+        

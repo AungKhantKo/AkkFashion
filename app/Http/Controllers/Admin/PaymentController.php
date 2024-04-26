@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Payment;
+use App\Http\Requests\PaymentRequest;
 
 class PaymentController extends Controller
 {
@@ -30,7 +31,7 @@ class PaymentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PaymentRequest $request)
     {
         $payments = Payment::create($request->all());
 

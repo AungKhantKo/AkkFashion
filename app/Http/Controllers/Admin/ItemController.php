@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\ItemRequest;
 use App\Models\Item;
 use App\Models\Category;
 
@@ -32,7 +33,7 @@ class ItemController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ItemRequest $request)
     {
         // dd($request);
         $items= Item::create($request->all());
@@ -63,7 +64,29 @@ class ItemController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // echo $id;
+        
+        $item = Item::find($id);
+        // dd($item);
+        $categories = Category::all();
+        return view('admin.items.edit',compact('categories','item'));
+
+        
+        
+
+        // $items= Item::create($request->all());
+
+        // // file upload
+        // $fileName = time().'.'.$request->image->extension();
+
+        // $upload = $request->image->move(public_path('images/'), $fileName);
+        // if($upload) {
+        //     $items->image = "/images/".$fileName;
+        // }
+
+        // $items->save();
+
+        // return redirect()->route('backend.items.index');
     }
 
     /**
@@ -79,7 +102,10 @@ class ItemController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // echo $id;
+        $item = Item::find($id);
+        $item->delete();
+        return redirect()->route('backend.items.index');
     }
 }
 
