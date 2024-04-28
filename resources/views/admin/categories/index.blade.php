@@ -35,7 +35,7 @@
                             <td>{{$category->name}}</td>
                             <td><img src="{{$category->image}}" width='100' height='50'></td>
                             <td>
-                                <a href="" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{route('backend.categories.edit',$category->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                 <button class="btn btn-sm btn-danger delete" type="button" data-id="{{$category->id}}">Delete</button>
                             </td>
                         </tr>  

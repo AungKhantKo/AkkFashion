@@ -47,7 +47,7 @@
                             <!-- <td>{{$user->password}}</td> -->
                             <td>{{$user->role}}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="{{route('backend.users.edit',$user->id)}}" class="btn btn-sm btn-warning">Edit</a>
                                 <button class="btn btn-sm btn-danger delete" type="button" data-id="{{$user->id}}">Delete</button>
                             </td>
                         </tr>  

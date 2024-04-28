@@ -35,7 +35,7 @@
                             <td>{{$payment->name}}</td>
                             <td><img src = "{{$payment->image}}" width='100' height='50'></td>
                             <td>
-                                <a href="" class="btn btn-sm btn-warning" type="submit">Edit</a>
+                                <a href="{{route('backend.payments.edit',$payment->id)}}" class="btn btn-sm btn-warning" type="submit">Edit</a>
                                 <button class="btn btn-sm btn-danger delete" type="button" data-paymentid="{{$payment->id}}">Delete</button>
                             </td>
                         </tr>  

@@ -58,7 +58,10 @@ class PaymentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // echo $id;
+        $payment = Payment::find($id);
+        // dd($payment);
+        return view('admin.payments.edit',compact('payment'));
     }
 
     /**
