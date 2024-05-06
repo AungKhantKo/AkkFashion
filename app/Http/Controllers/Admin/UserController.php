@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
+use App\Http\Requests\UserUpdateRequest;
 
 class UserController extends Controller
 {
@@ -61,9 +62,13 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserUpdateRequest $request, string $id)
     {
-        //
+        // dd($request);
+        $user = User::find($id);
+        $user->update($request->all());
+        $user->save();
+        return redirect()->route('backend.users.index');
     }
 
     /**

@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid px-4">
             <div class="my-4">
-                <h3 class="my-4 d-inline">Items Create</h3>
+                <h3 class="my-4 d-inline">Item Edit</h3>
                 <a href="{{route('backend.items.index')}}" class="btn btn-danger float-end">Cancel</a>
             </div>
 
@@ -37,35 +37,32 @@
                             @endif
 
                         </div>
+                        
                         <div class="mb-3">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link active" id="old_image-tab" data-bs-toggle="tab" data-bs-target="#old_image-tab-pane" type="button" role="tab" aria-controls="old_image-tab-pane" aria-selected="true">Old image</button>
                                 </li>
+
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link" id="new_image-tab" data-bs-toggle="tab" data-bs-target="#new_image-tab-pane" type="button" role="tab" aria-controls="new_image-tab-pane" aria-selected="false">New image</button>
                                 </li>
-                                
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="old_image-tab-pane" role="tabpanel" aria-labelledby="old_image-tab" tabindex="0">
-                                        <img src="{{$item->image}}" alt="" class="w-25  my-3">
-                                            <input class="form-control" accept="image/*" type="hidden" name="old_image" id="" value="{{$item->image}}">
-                                    </div>
+                            
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
 
-
-                                    <div class="tab-pane fade" id="new_image-tab-pane" role="tabpanel" aria-labelledby="new_image-tab" tabindex="0">
-                                        <input class="form-control my-3" accept="image/*" type="file" name="new_image" id="image">
-                                    </div>
-
-                                        
+                                <div class="tab-pane fade show active" id="old_image-tab-pane" role="tabpanel" aria-labelledby="old_image-tab" tabindex="0">
+                                    <img src="{{$item->image}}" alt="" class="w-25  my-3">
+                                        <input class="form-control" accept="image/*" type="hidden" name="old_image" id="" value="{{$item->image}}">
                                 </div>
-                                
-                            
 
-                            
+                                <div class="tab-pane fade" id="new_image-tab-pane" role="tabpanel" aria-labelledby="new_image-tab" tabindex="0">
+                                    <input class="form-control my-3" accept="image/*" type="file" name="new_image" id="image">
+                                </div>  
 
+                            </div>
                         </div>
+
                         <div class="mb-3 ">
                             <label for="price" class="form-label fw-bold">Price</label>
                             <input type="text" class="form-control {{$errors->has('price') ? 'is-invalid' : '' }}" id="price" name="price" value="{{$item->price}}" placeholder="">
