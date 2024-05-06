@@ -70,9 +70,9 @@
                             <label for="role" class="form-label fw-bold">Role</label>
                             <select class="form-select {{$errors->has('role') ? 'is-invalid' : ''}}" name="role" aria-label="Default select example">
                             <option value="">Choose role</option>
-                                <option value="1" {{$user->role == 1 ? 'selected':''}}>Admin</option>
-                                <option value="2" {{$user->role == 2 ? 'selected':''}}>Seller</option>
-                                <option value="0" {{$user->role == 0 ? 'selected':''}}>User</option>                                
+                                <option value="admin" {{$user->role == "admin" ? 'selected':''}}>Admin</option>
+                                <option value="seller" {{$user->role == "seller" ? 'selected':''}}>Seller</option>
+                                <option value="user" {{$user->role == "user" ? 'selected':''}}>User</option>                                
                             </select>
 
                             @if($errors->has('role'))

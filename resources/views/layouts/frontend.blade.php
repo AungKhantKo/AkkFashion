@@ -40,8 +40,29 @@
                             <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
-                    <a href="/login" class="btn mx-3">Login</a>
-                    <a href="/register" class="btn btn-outline-danger">Register</a>
+                    @guest
+                        <a href="/login" class="btn mx-3">Login</a>
+                        <a href="/register" class="btn btn-outline-danger">Register</a>
+                    @else
+                        <div class="nav-item dropdown mx-5">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                {{Auth::user()->name}}
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if(Auth::user()->role == "user")
+                                <li><a class="dropdown-item" href="#">Profile</a></li>
+                                @else
+                                <li><a class="dropdown-item" href="{{route('backend.dashboard')}}">Admin Panel</a></li>
+                                @endif
+                                <li>
+                                    <form action="{{route('logout')}}" method="POST" class="dropdown-item">
+                                        @csrf
+                                        <button type="submit" class="btn">Logout</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </nav>

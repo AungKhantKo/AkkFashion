@@ -7,8 +7,9 @@
             </div>
 
         <div class="container-md">
-            <form action="{{route('backend.items.store')}}" method="POST" enctype="multipart/form-data" class="border"> 
+            <form action="{{route('backend.items.update',$item->id)}}" method="POST" enctype="multipart/form-data" class="border"> 
                 {{csrf_field()}}
+                {{method_field('put')}}
                 <div class="row py-2">
                     <div class="offset-lg-1 col-lg-10">
                         
@@ -37,16 +38,32 @@
 
                         </div>
                         <div class="mb-3">
-                            <label for="image" class="form-label fw-bold">Image</label>
-                            <input class="form-control {{$errors->has('image') ? 'is-invalid' : '' }}" accept="image/*" type="file" name="image" id="image">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="old_image-tab" data-bs-toggle="tab" data-bs-target="#old_image-tab-pane" type="button" role="tab" aria-controls="old_image-tab-pane" aria-selected="true">Old image</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="new_image-tab" data-bs-toggle="tab" data-bs-target="#new_image-tab-pane" type="button" role="tab" aria-controls="new_image-tab-pane" aria-selected="false">New image</button>
+                                </li>
+                                
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="old_image-tab-pane" role="tabpanel" aria-labelledby="old_image-tab" tabindex="0">
+                                        <img src="{{$item->image}}" alt="" class="w-25  my-3">
+                                            <input class="form-control" accept="image/*" type="hidden" name="old_image" id="" value="{{$item->image}}">
+                                    </div>
 
-                            @if($errors->has('image'))
 
-                            <div class="invalid-feedback">
-                                {{$errors->first('image')}}
-                            </div>
+                                    <div class="tab-pane fade" id="new_image-tab-pane" role="tabpanel" aria-labelledby="new_image-tab" tabindex="0">
+                                        <input class="form-control my-3" accept="image/*" type="file" name="new_image" id="image">
+                                    </div>
 
-                            @endif
+                                        
+                                </div>
+                                
+                            
+
+                            
 
                         </div>
                         <div class="mb-3 ">

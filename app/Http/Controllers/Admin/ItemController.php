@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\ItemUpdateRequest;
 use App\Models\Item;
 use App\Models\Category;
 
@@ -92,9 +93,26 @@ class ItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ItemUpdateRequest $request, string $id)
     {
-        //
+        // dd($request);
+        // echo $id;
+        $item = Item::find($id);
+        $item->update($request->all());
+        
+        if($request->hasFile('new_image')){
+            // file upload
+            $fileName = time().'.'.$request->new_image->extension();
+
+            $upload = $request->new_image->move(public_path('images/'), $fileName);
+            if($upload) {
+                $item->image = "/images/".$fileName;
+            }
+        }else{
+            $item->image = $request->old_image;
+        }
+        $item->save();
+        return redirect()->route('backend.items.index');
     }
 
     /**
