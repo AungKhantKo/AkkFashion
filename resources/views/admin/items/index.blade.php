@@ -19,6 +19,7 @@
                         <tr>
                             <th>CodeNo</th>
                             <th>Item Name</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Discount</th>
                             <th>InStock</th>
@@ -29,6 +30,7 @@
                         <tr>
                             <th>CodeNo</th>
                             <th>Item Name</th>
+                            <th>Category</th>
                             <th>Price</th>
                             <th>Discount</th>
                             <th>InStock</th>
@@ -40,6 +42,7 @@
                         <tr>
                             <td>{{$item->codeNo}}</td>
                             <td>{{$item->name}}</td>
+                            <td>{{$item->category->name}}</td>
                             <td>{{$item->price}} MMK</td>
                             <td>{{$item->discount}} MMK</td>
                             <td>{{$item->inStock}}</td>

@@ -19,6 +19,8 @@ Route::get('item/{item_id}',[App\Http\Controllers\FrontendController::class,'sho
 
 Route::get('items/category/{id}', [App\Http\Controllers\FrontendController::class,'itemCategory'])->name('items.category');
 
+Route::get('checkout', [App\Http\Controllers\FrontendController::class,'checkout'])->name('checkout');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

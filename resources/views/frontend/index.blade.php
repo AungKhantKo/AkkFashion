@@ -53,7 +53,14 @@
                                 </div>
                                 <!-- Product actions-->
                                 <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('front.show',$item->id)}}">View options</a></div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{route('front.show',$item->id)}}">View</a></div>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="text-center"><a class="btn btn-outline-dark mt-auto addToCart" data-id="{{$item->id}}" data-name="{{$item->name}}" data-codeno="{{$item->codeNo}}" data-price="{{$item->price}}" data-discount="{{$item->discount}}">Add To Card</a></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
