@@ -21,6 +21,9 @@ Route::get('items/category/{id}', [App\Http\Controllers\FrontendController::clas
 
 Route::get('checkout', [App\Http\Controllers\FrontendController::class,'checkout'])->name('checkout');
 
+Route::post('orderNow', [App\Http\Controllers\FrontendController::class,'orderNow'])->name('orderNow');
+
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -36,5 +39,10 @@ Route::group(['middleware'=>['auth', 'role:admin|seller'],'prefix'=>'backend', '
     Route::resource('payments',App\Http\Controllers\Admin\PaymentController::class);
 
     Route::resource('users',App\Http\Controllers\Admin\UserController::class);
+
+    Route::get('orders',[App\Http\Controllers\Admin\OrderController::class,'index'])->name('orders.index');
+
+    Route::get('orders/{voucherNo}',[App\Http\Controllers\Admin\OrderController::class,'detail'])->name('orders.detail');
+
 
 });

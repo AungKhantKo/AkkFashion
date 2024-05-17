@@ -59,6 +59,11 @@
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
 
+                            <a class="nav-link" href="{{route('backend.orders.index')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                Order
+                            </a>
+
                             <a class="nav-link" href="{{route('backend.items.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                 Item
