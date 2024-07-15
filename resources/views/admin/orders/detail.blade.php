@@ -73,6 +73,18 @@
                     <div class="offset-md-4 col-md-4">
                         <img src="{{$orderFirst->paymentSlip}}" class="img-fluid" alt="Hi">
                     </div>
+                    <form class="d-grid gap-2 my-5" action="{{route('backend.orders.status',$orderFirst->vocherNo)}}" method="post">
+                        @csrf
+                        {{method_field('put')}}
+                        @if($orderFirst->status == "Pending")
+                            <input type="hidden" name="status" id="" value="Accept">
+                            <button class="btn btn-primary">Order Accept</button>
+                        @elseif($orderFirst->status == "Accept")
+                            <input type="hidden" name="status" id="" value="Complete">
+                            <button class="btn btn-success">Order Complete</button>
+                        @endif
+
+                    </form>
                 </div>
             </div>
         </div>

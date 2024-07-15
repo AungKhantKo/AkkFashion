@@ -20,6 +20,7 @@ $(document).ready(function () {
         let codeNo = $(this).data('codeno');
         let price = $(this).data('price');
         let discount = $(this).data('discount');
+        let qty = $('.qty').val();
 
         // console.log(id,name,price);
 
@@ -29,7 +30,7 @@ $(document).ready(function () {
             codeNo: codeNo,
             price: price,
             discount: discount,
-            qty: 1
+            qty: qty
         }
         // console.log(shop_items);
         let shopString = localStorage.getItem('shops');
@@ -44,7 +45,7 @@ $(document).ready(function () {
         $.each(shopArray,function(i,v){
             if(id == v.id) {
                 status = true;
-                v.qty++;
+                v.qty = Number(v.qty)+Number(qty);
             }
         })
 

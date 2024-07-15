@@ -23,6 +23,9 @@ Route::get('checkout', [App\Http\Controllers\FrontendController::class,'checkout
 
 Route::post('orderNow', [App\Http\Controllers\FrontendController::class,'orderNow'])->name('orderNow');
 
+Route::get('profile/details/{user}', [App\Http\Controllers\FrontendController::class,'profileDetail'])->name('profile.detail');
+
+
 
 Auth::routes();
 
@@ -38,11 +41,16 @@ Route::group(['middleware'=>['auth', 'role:admin|seller'],'prefix'=>'backend', '
 
     Route::resource('payments',App\Http\Controllers\Admin\PaymentController::class);
 
-    Route::resource('users',App\Http\Controllers\Admin\UserController::class);
+    Route::resource('users',App\Http\Controllers\Admin\UserController::class)->middleware('role:admin');
 
     Route::get('orders',[App\Http\Controllers\Admin\OrderController::class,'index'])->name('orders.index');
+    Route::get('orderAccept',[App\Http\Controllers\Admin\OrderController::class,'orderAccept'])->name('orders.accept');
+    Route::get('orderComplete',[App\Http\Controllers\Admin\OrderController::class,'orderComplete'])->name('orders.complete');
+
 
     Route::get('orders/{voucherNo}',[App\Http\Controllers\Admin\OrderController::class,'detail'])->name('orders.detail');
+
+    Route::put('orders/{voucherNo}',[App\Http\Controllers\Admin\OrderController::class,'status'])->name('orders.status');
 
 
 });
