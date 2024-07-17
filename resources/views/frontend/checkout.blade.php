@@ -33,9 +33,7 @@
             </table>
         </div>
         <div class="d-grid gap-2">
-            @guest
-                <a href="/login" class="btn btn-primary">Login</a>
-            @else
+            @if(Auth::user() && Auth::user()->role == 'user')
             <form action="" id="paymentForm" enctype="multipart/form-data">
                 <div class="row">
                     @csrf
@@ -56,7 +54,11 @@
                     <button type="submit" id="orderNow" class=" btn btn-success my-5">Order</button>
                 </div>
             </form>
-            @endguest
+            @elseif(Auth::user() && (Auth::user()->role == 'admin' || Auth::user()->role == "seller"))
+                <p class="text-center text-danger">Admin and Seller cannot order</p>    
+            @else
+            <a href="/login" class="btn btn-primary">Login</a>
+            @endif
         </div>
     </section>
 

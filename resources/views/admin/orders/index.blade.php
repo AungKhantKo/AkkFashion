@@ -4,9 +4,9 @@
     <div class="container-fluid px-4">
         <div class="my-5">
             <h3 class="my-4 d-inline">Orders Pending</h3>
-            <a href="" class="btn btn-success float-end mx-3">Order Complete List</a>
-            <a href="" class="btn btn-primary float-end mx-3">Order Accept List</a>
-            <a href="" class="btn btn-danger float-end">Order Pending List</a>
+            <a href="{{route('backend.orders.complete')}}" class="btn btn-success float-end mx-3">Order Complete List</a>
+            <a href="{{route('backend.orders.accept')}}" class="btn btn-primary float-end mx-3">Order Accept List</a>
+            <a href="{{route('backend.orders.index')}}" class="btn btn-danger float-end">Order Pending List</a>
 
         </div>
         <div class="card mb-4">
@@ -40,7 +40,7 @@
                                 <tr>
                                     <td>{{$order->vocherNo}}</td>
                                     <td>{{$order->user->name}}</td>
-                                    <td><span class="badge text-bg-danger">{{$order->status}}</span></td>
+                                    <td><span class="badge {{$order->status == 'Pending' ? 'text-bg-danger' : ($order->status == 'Accept' ? 'text-bg-primary' : 'text-bg-success')}}">{{$order->status}}</span></td>
                                     <td>{{$order->payment->name}}</td>
                                     <td><a href="{{route('backend.orders.detail',$order->vocherNo)}}" class="btn btn-sm btn-primary">Details</a></td>
                                 </tr>

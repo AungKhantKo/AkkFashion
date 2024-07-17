@@ -59,9 +59,9 @@
                             <label for="password" class="form-label fw-bold">Password</label>
                             <input type="password" class="form-control {{$errors->has('password') ? 'is-invalid' : ''}}" name="password" id="password" placeholder="">
 
-                            @if($errors->has('password'))
+                            @if($errors->has('old_password'))
                                 <div>
-                                    {{$errors->first('password')}}
+                                    {{$errors->first('old_password')}}
                                 </div>
                             @endif
 

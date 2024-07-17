@@ -7,13 +7,14 @@ use App\Models\Item;
 use App\Models\Category;
 use App\Models\Payment;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        $items = Item::all();
+        $items = Item::where('inStock','1')->get();
         $categories = Category::all();
         // dd($items);
         return view('frontend.index', compact('items','categories'));
@@ -22,7 +23,7 @@ class FrontendController extends Controller
     public function itemCategory($categoryID)
     {
         // echo $categoryID;
-        $items = Item::where('category_id',$categoryID)->get();
+        $items = Item::where('category_id',$categoryID)->where('inStock','1')->get();
         $categories = Category::all();
         // dd($items);
         return view('frontend.index', compact('items','categories'));
@@ -33,8 +34,9 @@ class FrontendController extends Controller
     {
         // echo $id;
         $item = Item::find($id);
-        // dd($item);
-        return view('frontend.shop_item', compact('item'));
+        $items = Item::where('category_id',$item->category_id)->where('id','!=',$id)->where('inStock','1')->limit(4)->get();
+        // dd($items);
+        return view('frontend.shop_item', compact('item','items'));
     }
 
     public function checkout()
@@ -71,5 +73,10 @@ class FrontendController extends Controller
         }
 
         return "You Order Successful";
+    }
+
+    public function profileDetail($id){
+        $user = User::find($id);
+        dd($user);
     }
 }

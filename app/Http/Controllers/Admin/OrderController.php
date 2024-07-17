@@ -21,8 +21,7 @@ class OrderController extends Controller
         }
         // dd($ordersWithUser);
         // die();
-        return view('admin.orders.index',compact('ordersWithUser','voucherNoGroups'));
-        
+        return view('admin.orders.index',compact('ordersWithUser','voucherNoGroups'));        
 
     }
     public function detail($voucherNo){
@@ -31,5 +30,46 @@ class OrderController extends Controller
         // dd($orderFirst);
         $orders= Order::where('vocherNo',$voucherNo)->get();
         return view('admin.orders.detail',compact('orderFirst','orders'));
+    }
+
+    public function status(Request $request, $voucherNo) {
+        // dd($voucherNo);
+
+        Order::where('vocherNo',$voucherNo)->update(['status' => $request->status]);
+        return redirect()->route('backend.orders.index');
+    }
+
+    public function orderComplete(){
+
+        $orders = Order::all();
+        // dd($orders);
+        $voucherNoGroups = $orders->groupBy('vocherNo')->toArray();
+        // dd($voucherNoGroups);
+        foreach($voucherNoGroups as $voucherNo => $group) {
+            $orderIDs = array_column($group, 'id');
+            var_dump($orderIDs);
+            $ordersWithUser[] = Order::with('user')->whereIn('id',$orderIDs)->where('status','Complete')->first();
+        }
+        // dd($ordersWithUser);
+        // die();
+        return view('admin.orders.index',compact('ordersWithUser','voucherNoGroups'));        
+
+    }
+
+    public function orderAccept(){
+
+        $orders = Order::all();
+        // dd($orders);
+        $voucherNoGroups = $orders->groupBy('vocherNo')->toArray();
+        // dd($voucherNoGroups);
+        foreach($voucherNoGroups as $voucherNo => $group) {
+            $orderIDs = array_column($group, 'id');
+            var_dump($orderIDs);
+            $ordersWithUser[] = Order::with('user')->whereIn('id',$orderIDs)->where('status','Accept')->first();
+        }
+        // dd($ordersWithUser);
+        // die();
+        return view('admin.orders.index',compact('ordersWithUser','voucherNoGroups'));        
+
     }
 }
